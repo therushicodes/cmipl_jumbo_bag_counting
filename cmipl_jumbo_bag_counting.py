@@ -15,12 +15,12 @@ from email.mime.multipart import MIMEMultipart
 
 # Camera credentials and IP
 username = "admin"
-password = "asif@1234"
-ip_address = "192.168.3.123"
-port = 554  # Default RTSP port for Hikvision cameras
+password = "your_camera_password"
+ip_address = "192.168.x.x"
+port = 554  # Usually 554 for RTSP
 
 # Load YOLO model and DeepSORT tracker
-model = YOLO('/home/sapien1/cmipl_demo/runs/detect/train/weights/best.pt')  # Path of model weights
+model = YOLO('/home/sapien1/cmipl_demo/runs/detect/train/weights/best.pt')
 tracker = DeepSort(max_age=30)
 
 # Setup the folder for csv file
@@ -28,7 +28,7 @@ output_folder = str(pathlib.Path.home() / "Desktop/CSV_files")
 os.makedirs(output_folder, exist_ok=True)
 
 # CSV for logging sack crossings
-csv_output_path = os.path.join(output_folder, 'crossing_log.csv')    # Path to CSV file
+csv_output_path = os.path.join(output_folder, 'crossing_log.csv')
 crossing_logs = []  # To store crossing event data
 
 # Counting parameters
@@ -41,7 +41,7 @@ prev_positions = {}
 rtsp_url_main = f"rtsp://{username}:{password}@{ip_address}:{port}/Streaming/Channels/101"
 
 # Sub stream (lower quality, good for preview)
-rtsp_url_sub = f"rtsp://{username}:{password}@{ip_address}:{port}/Streaming/Channels/102?tcp"
+rtsp_url_sub = f"rtsp://{username}:{password}@{ip_address}:{port}/Streaming/Channels/102"
 
 def stream_camera(rtsp_url, window_name="Hikvision Camera"):
     """
@@ -229,11 +229,9 @@ def test_connection():
     cap_sub.release()
 
 # Email credentials and settings
-sender_email = "example@gmail.com"
-receivers = ["eg1@gmail.com",
-             "eg2@gmail.com",
-             "eg3@gmail.com"]
-password = "your_app_password" 
+sender_email = "youremail@gmail.com"
+password = "your_app_password"
+receivers = ["receiver1@domain.com", "receiver2@domain.com"] 
 
 def send_email():
     subject = "Scheduled Email - Sack Counting"
@@ -270,15 +268,17 @@ def send_email():
     except Exception as e:
         print("Failed to send email:", e)
 
-# List of times to send email (24-hour format)
-times_to_send = ["10:00", "14:00", "18:00", "22:00"]
 
-# Schedule emails at specified times
-for t in times_to_send:
-    schedule.every().day.at(t).do(send_email)
-    schedule.every().day.at(t).do(reset_tracking_ids)
-    print(f"Email scheduled at {t}")
+# Run the scheduler loop
+def run_scheduler():
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
+# Start scheduler thread
+scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
+scheduler_thread.start()
+    
 if __name__ == "__main__":
     # Test connection
     test_connection()
@@ -306,14 +306,3 @@ if __name__ == "__main__":
 
     # Start camera stream
     stream_camera(selected_url, window_name)
-
-
-# Run the scheduler loop
-def run_scheduler():
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
-
-# Start scheduler thread
-    scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
-    scheduler_thread.start()
