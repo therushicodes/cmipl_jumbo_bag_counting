@@ -33,10 +33,10 @@ Update the model path in the code:
 
 ### 4. Camera Configuration
 Edit these values in the script to match your Hikvision camera:
-`username = "admin"
-password = "your_camera_password"
-ip_address = "192.168.x.x"
-port = 554  # Usually 554 for RTSP`
+`username = "admin"`
+`password = "your_camera_password"`
+`ip_address = "192.168.x.x"`
+`port = 554  # Usually 554 for RTSP`
 
 Available RTSP URLs:
 
@@ -49,9 +49,9 @@ Alternate main: rtsp://<user>:<pass>@<ip>:554/h264/ch1/main/av_stream
 
 ### 5. Email Configuration
 
-`sender_email = "youremail@gmail.com"
-password = "your_app_password"
-receivers = ["receiver1@domain.com", "receiver2@domain.com"]`
+`sender_email = "youremail@gmail.com"`
+`password = "your_app_password"`
+`receivers = ["receiver1@domain.com", "receiver2@domain.com"]`
 
 ## How it works
 YOLOv8 detects sacks.
