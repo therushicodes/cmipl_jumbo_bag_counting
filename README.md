@@ -60,12 +60,12 @@ Alternate main: rtsp://<user>:<pass>@<ip>:554/h264/ch1/main/av_stream
 `receivers = ["receiver1@domain.com", "receiver2@domain.com"]`
 
 ## How it works
-YOLOv8 detects sacks.
 
-1. DeepSORT tracks them across frames.
-2. When a sack crosses the defined virtual zone, it is logged.
-3. CSV saved at ~/Desktop/CSV_files/crossing_log.csv.
-4. Emails are scheduled to send updates + CSV file.
+1. YOLOv8 detects sacks.
+2. DeepSORT tracks them across frames.
+3. When a sack crosses the defined virtual zone, it is logged.
+4. CSV saved at ~/Desktop/CSV_files/crossing_log.csv.
+5. Emails are scheduled to send updates + CSV file.
 
 ## Authors
 Developed at Sapien Robotics
