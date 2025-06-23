@@ -69,5 +69,6 @@ YOLOv8 detects sacks.
 
 ## Authors
 Developed at Sapien Robotics
+
 Created by Rushikesh
 
