@@ -33,9 +33,13 @@ Update the model path in the code:
 
 ### 4. Camera Configuration
 Edit these values in the script to match your Hikvision camera:
+
 `username = "admin"`
+
 `password = "your_camera_password"`
+
 `ip_address = "192.168.x.x"`
+
 `port = 554  # Usually 554 for RTSP`
 
 Available RTSP URLs:
