@@ -54,7 +54,9 @@ Alternate main: rtsp://<user>:<pass>@<ip>:554/h264/ch1/main/av_stream
 ### 5. Email Configuration
 
 `sender_email = "youremail@gmail.com"`
+
 `password = "your_app_password"`
+
 `receivers = ["receiver1@domain.com", "receiver2@domain.com"]`
 
 ## How it works
