@@ -19,7 +19,6 @@ This Python-based application performs **real-time object detection and tracking
 
 ### 1. Clone the Repository
 
-```bash
 git clone https://github.com/therushicodes/cmipl_jumbo_bag_counting.git
 cd cmipl_jumbo_bag_counting
 
