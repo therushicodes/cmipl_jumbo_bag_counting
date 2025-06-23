@@ -20,7 +20,7 @@ ip_address = "192.168.3.123"
 port = 554  # Default RTSP port for Hikvision cameras
 
 # Load YOLO model and DeepSORT tracker
-model = YOLO('/home/sapien1/cmipl_demo/runs/detect/train/weights/best.pt')
+model = YOLO('/home/sapien1/cmipl_demo/runs/detect/train/weights/best.pt')  # Path of model weights
 tracker = DeepSort(max_age=30)
 
 # Setup the folder for csv file
@@ -28,7 +28,7 @@ output_folder = str(pathlib.Path.home() / "Desktop/CSV_files")
 os.makedirs(output_folder, exist_ok=True)
 
 # CSV for logging sack crossings
-csv_output_path = os.path.join(output_folder, 'crossing_log.csv')
+csv_output_path = os.path.join(output_folder, 'crossing_log.csv')    # Path to CSV file
 crossing_logs = []  # To store crossing event data
 
 # Counting parameters
@@ -228,6 +228,13 @@ def test_connection():
         print("âœ— Sub stream connection failed")
     cap_sub.release()
 
+# Email credentials and settings
+sender_email = "example@gmail.com"
+receivers = ["eg1@gmail.com",
+             "eg2@gmail.com",
+             "eg3@gmail.com"]
+password = "your_app_password" 
+
 def send_email():
     subject = "Scheduled Email - Sack Counting"
     body = (
@@ -299,13 +306,6 @@ if __name__ == "__main__":
 
     # Start camera stream
     stream_camera(selected_url, window_name)
-
-# Email credentials and settings
-sender_email = "sapientailscale@gmail.com"
-receivers = ["aditya.patil@sapienrobotics.ai",
-             "aryaman.bansal@sapienrobotics.ai",
-             "sapien-collab-1@sapienrobotics.ai"]
-password = "your_app_password" 
 
 
 # Run the scheduler loop
